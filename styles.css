@@ -1,32 +1,75 @@
+/* Basic styling and mobile-first design */
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-header {
-    background-color: #a52a2a;
+h1 {
+    color: #2c3e50;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+select, textarea, button {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+textarea {
+    height: 80px;
+}
+
+.rating input[type="radio"] {
+    margin-right: 5px;
+}
+
+button {
+    background-color: #3498db;
     color: white;
-    padding: 1rem;
-}
-
-nav a {
-    margin: 0 1rem;
-    color: white;
-    text-decoration: none;
-}
-
-main {
-    padding: 2rem;
-}
-
-#rating span {
+    border: none;
+    padding: 10px;
     cursor: pointer;
-    font-size: 2rem;
+    font-size: 1em;
 }
 
-#reviews {
-    margin-top: 2rem;
+button:hover {
+    background-color: #2980b9;
 }
 
+/* Thank You Box Styling */
+#thankYouBox {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 300px;
+    background-color: #fff;
+    border: 2px solid #3498db;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#thankYouBox p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+#thankYouBox button {
+    background-color: #3498db;
+    padding: 10px 20px;
+}
