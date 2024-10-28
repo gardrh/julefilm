@@ -5,6 +5,7 @@ const API_KEY = '29940940425-j7nk0vnoh16jr48fke3skh7bkuitcj3d.apps.googleusercon
 async function fetchMovies() {
     const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/movies?key=${API_KEY}`);
     const data = await response.json();
+    console.log(data);  // Check if data loads correctly here
     const movies = data.values.slice(1); // Remove header row
     populateMovieDropdown(movies);
 }
