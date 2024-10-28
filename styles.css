@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #a52a2a;
+    color: white;
+    padding: 1rem;
+}
+
+nav a {
+    margin: 0 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 2rem;
+}
+
+#rating span {
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+#reviews {
+    margin-top: 2rem;
+}
