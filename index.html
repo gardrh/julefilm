@@ -7,39 +7,31 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Hallmark Christmas Movie Ratings</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="top.html">Top Movies</a>
-        </nav>
-    </header>
 
-    <main>
-        <h2>Select a Movie to Rate</h2>
-        <label for="movieSelect">Choose a movie:</label>
-        <select id="movieSelect"></select>
+    <h1>Hallmark Christmas Movie Ratings</h1>
 
-        <label for="yearFilter">Filter by Year:</label>
-        <input type="number" id="yearFilter" placeholder="Enter year" oninput="filterByYear()">
+    <label for="movieSelect">Select a Movie:</label>
+    <select id="movieSelect"></select>
 
-        <h2>Selected Movie</h2>
-        <div id="selectedMovie"></div>
+    <div class="rating">
+        <label>Rate this Movie:</label><br>
+        <input type="radio" name="rating" value="1"> 1 Star
+        <input type="radio" name="rating" value="2"> 2 Stars
+        <input type="radio" name="rating" value="3"> 3 Stars
+        <input type="radio" name="rating" value="4"> 4 Stars
+        <input type="radio" name="rating" value="5"> 5 Stars
+    </div>
 
-        <h2>Rate the Movie</h2>
-        <div id="rating">
-            <!-- Stars input for rating -->
-            <span id="stars" data-rating="0">
-                &#9734;&#9734;&#9734;&#9734;&#9734;
-            </span>
-        </div>
-        <textarea id="comment" placeholder="Write your thoughts..."></textarea>
-        <button onclick="submitRating()">Submit Rating</button>
+    <textarea id="comment" placeholder="Write a few words about the movie..."></textarea>
+    <button onclick="submitRating()">Submit Rating</button>
 
-        <section id="reviews"></section>
-    </main>
+    <!-- Thank You Message Box -->
+    <div id="thankYouBox" class="thank-you">
+        <p>Thank you for your submission!</p>
+        <button onclick="closeThankYouBox()">Close</button>
+    </div>
 
     <script src="script.js"></script>
+
 </body>
 </html>
