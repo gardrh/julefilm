@@ -22,7 +22,10 @@
         <select id="movieSelect"></select>
 
         <label for="yearFilter">Filter by Year:</label>
-        <input type="number" id="yearFilter" placeholder="Enter year">
+        <input type="number" id="yearFilter" placeholder="Enter year" oninput="filterByYear()">
+
+        <h2>Selected Movie</h2>
+        <div id="selectedMovie"></div>
 
         <h2>Rate the Movie</h2>
         <div id="rating">
