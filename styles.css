@@ -73,3 +73,44 @@ button:hover {
     background-color: #3498db;
     padding: 10px 20px;
 }
+
+/* Header Navigation */
+header nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+header nav a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+}
+
+/* Movie List */
+.movie-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.movie-entry {
+    padding: 15px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.movie-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.movie-rating {
+    font-size: 1em;
+    color: #f39c12;
+    margin-top: 5px;
+}
