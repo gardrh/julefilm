@@ -27,8 +27,13 @@ function populateMovieDropdown(movies) {
 
 async function submitRating() {
     const movieID = document.getElementById('movieSelect').value;
-    const rating = document.querySelector('input[name="rating"]:checked').value; // Assuming you have radio buttons for rating
+    const rating = document.querySelector('input[name="rating"]:checked')?.value; // Get checked rating
     const comment = document.getElementById('comment').value;
+
+    if (!rating) {
+        alert('Please select a rating before submitting.');
+        return;
+    }
 
     try {
         const response = await fetch(APPS_SCRIPT_URL, {
@@ -41,16 +46,24 @@ async function submitRating() {
         
         const result = await response.json();
         if (result.status === 'success') {
-            alert('Thank you for your rating!');
-            // Optionally refresh the ratings or clear inputs
             document.getElementById('comment').value = ''; // Clear comment input
-            fetchRatings(movieID); // If you have a function to fetch ratings
+            showThankYouBox(); // Show thank you message
         } else {
             alert('Error submitting your rating. Please try again.');
         }
     } catch (error) {
         console.error('There was a problem with the submission:', error);
     }
+}
+
+function showThankYouBox() {
+    const thankYouBox = document.getElementById('thankYouBox');
+    thankYouBox.style.display = 'block';
+}
+
+function closeThankYouBox() {
+    const thankYouBox = document.getElementById('thankYouBox');
+    thankYouBox.style.display = 'none';
 }
 
 // Fetch movies when the page loads
