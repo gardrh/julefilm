@@ -1,22 +1,60 @@
-/* Basic styling and mobile-first design */
-body {
-    font-family: Arial, sans-serif;
+/* General Reset */
+* {
     margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
-    color: #333;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h1 {
-    color: #2c3e50;
-    font-size: 1.8em;
+/* Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f3e9;
+    color: #333;
+    padding: 20px;
+}
+
+/* Header Navigation */
+header {
+    background-color: #c0392b;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
+header nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #ffdbac;
+}
+
+/* Page Title */
+h1 {
+    color: #c0392b;
+    text-align: center;
+    font-size: 2em;
+    font-family: 'Georgia', serif;
+    margin-bottom: 20px;
+}
+
+/* Labels and Form Elements */
 label {
     font-weight: bold;
-    margin-top: 10px;
+    font-size: 1.1em;
+    color: #c0392b;
     display: block;
+    margin-top: 20px;
 }
 
 select, textarea, button {
@@ -25,27 +63,34 @@ select, textarea, button {
     padding: 10px;
     margin: 10px 0;
     font-size: 1em;
+    border-radius: 5px;
+    border: 2px solid #d35400;
 }
 
 textarea {
     height: 80px;
+    resize: none;
+    border: 2px solid #d35400;
 }
 
 .rating input[type="radio"] {
     margin-right: 5px;
 }
 
+/* Button Styling */
 button {
-    background-color: #3498db;
+    background-color: #c0392b;
     color: white;
     border: none;
     padding: 10px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #a5281c;
 }
 
 /* Thank You Box Styling */
@@ -58,7 +103,8 @@ button:hover {
     width: 90%;
     max-width: 300px;
     background-color: #fff;
-    border: 2px solid #3498db;
+    border: 3px solid #c0392b;
+    border-radius: 8px;
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -66,51 +112,72 @@ button:hover {
 
 #thankYouBox p {
     font-size: 1.2em;
+    color: #27ae60;
     margin: 10px 0;
+    font-weight: bold;
 }
 
 #thankYouBox button {
-    background-color: #3498db;
+    background-color: #27ae60;
     padding: 10px 20px;
-}
-
-/* Header Navigation */
-header nav {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-header nav a {
-    text-decoration: none;
-    color: #3498db;
-    font-weight: bold;
-}
-
-/* Movie List */
-.movie-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.movie-entry {
-    padding: 15px;
-    border: 1px solid #ddd;
-    background-color: #fff;
     border-radius: 5px;
-}
-
-.movie-title {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #2c3e50;
-}
-
-.movie-rating {
     font-size: 1em;
-    color: #f39c12;
-    margin-top: 5px;
+}
+
+#thankYouBox button:hover {
+    background-color: #1e8449;
+}
+
+/* Festive Decorations */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url('https://path-to-snowflakes-image.png') center/cover no-repeat;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: -1;
+}
+
+button::before {
+    content: "🎄 ";
+    padding-right: 5px;
+}
+
+h1::before {
+    content: "❄️ ";
+    padding-right: 5px;
+}
+
+h1::after {
+    content: " ❄️";
+    padding-left: 5px;
+}
+
+/* Mobile Friendly Adjustments */
+@media (max-width: 600px) {
+    header nav {
+        flex-direction: column;
+    }
+
+    header nav a {
+        font-size: 1.2em;
+        margin: 5px 0;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    label, button, select, textarea {
+        font-size: 1em;
+    }
+
+    #thankYouBox {
+        width: 90%;
+        max-width: 250px;
+    }
 }
