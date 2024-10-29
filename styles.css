@@ -1,208 +1,109 @@
-/* General Reset */
-* {
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #faf3e0;
+    color: #8b0000;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-/* Body Styling */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f7f3e9;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-/* Centered Content Container */
-.container {
-    max-width: 600px;
-    width: 100%;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+header {
+    width: 100%;
+    background-color: #b22222;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+main {
+    max-width: 500px;
+    width: 90%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 15px;
 }
 
-/* Header Navigation */
-header {
-    background-color: #c0392b;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-header nav {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-header nav a {
-    color: #fff;
-    text-decoration: none;
+label {
     font-weight: bold;
-    font-size: 1.1em;
+}
+
+select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 2px solid #b22222;
+    border-radius: 5px;
+}
+
+/* Snowflake Rating System */
+.snowflake-rating {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.snowflake-rating span {
+    font-size: 2em;
+    color: #ddd;
     transition: color 0.3s;
 }
 
-header nav a:hover {
-    color: #ffdbac;
-}
-
-/* Page Title */
-h1 {
-    color: #c0392b;
-    font-size: 2em;
-    font-family: 'Georgia', serif;
-}
-
-/* Labels and Form Elements */
-label {
-    font-weight: bold;
-    font-size: 1.1em;
-    color: #c0392b;
-    text-align: left;
-}
-
-select, textarea, button {
-    width: 100%;
-    padding: 10px;
-    font-size: 1em;
-    border-radius: 5px;
-    border: 2px solid #d35400;
+.snowflake-rating span.selected {
+    color: #ffd700; /* Gold */
 }
 
 textarea {
-    height: 80px;
+    height: 100px;
     resize: none;
-    border: 2px solid #d35400;
 }
 
-.rating {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-}
-
-.rating input[type="radio"] {
-    margin-right: 5px;
-}
-
-/* Button Styling */
+/* Button */
 button {
-    background-color: #c0392b;
+    background-color: #b22222;
     color: white;
     border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 1.1em;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    padding: 10px 20px;
+    font-size: 1em;
     border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-button:hover {
-    background-color: #a5281c;
-}
-
-/* Thank You Box Styling */
+/* Thank You Box */
 #thankYouBox {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 300px;
     background-color: #fff;
-    border: 3px solid #c0392b;
-    border-radius: 8px;
+    border: 2px solid #b22222;
     padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#thankYouBox p {
-    font-size: 1.2em;
-    color: #27ae60;
-    margin: 10px 0;
-    font-weight: bold;
-}
-
-#thankYouBox button {
-    background-color: #27ae60;
-    padding: 10px 20px;
     border-radius: 5px;
-    font-size: 1em;
+    text-align: center;
 }
 
-#thankYouBox button:hover {
-    background-color: #1e8449;
-}
-
-/* Festive Decorations */
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: url('https://path-to-snowflakes-image.png') center/cover no-repeat;
-    opacity: 0.1;
-    pointer-events: none;
-    z-index: -1;
-}
-
-button::before {
-    content: "🎄 ";
-    padding-right: 5px;
-}
-
-h1::before {
-    content: "❄️ ";
-    padding-right: 5px;
-}
-
-h1::after {
-    content: " ❄️";
-    padding-left: 5px;
-}
-
-/* Mobile Friendly Adjustments */
+/* Mobile Styles */
 @media (max-width: 600px) {
-    header nav {
-        flex-direction: column;
-    }
-
-    header nav a {
+    header h1 {
         font-size: 1.2em;
-        margin: 5px 0;
-    }
-
-    h1 {
-        font-size: 1.8em;
-    }
-
-    label, button, select, textarea {
-        font-size: 1em;
-    }
-
-    .rating {
-        flex-direction: column;
-        align-items: start;
-    }
-
-    #thankYouBox {
-        width: 90%;
-        max-width: 250px;
     }
 }
