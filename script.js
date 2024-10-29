@@ -1,6 +1,5 @@
 const googleScriptURL = 'https://script.google.com/macros/s/AKfycbzPc47ZgTCruUTX75UXj_rL4BHW6Zuv3_YjJBL1vziDe5Q0OfVWBe9SUV0Xt6DY--4Xcw/exec';
 
-// Load movies from Google Sheets and populate dropdown
 async function loadMovies() {
     try {
         const response = await fetch(googleScriptURL);
@@ -22,20 +21,17 @@ let selectedRating = 0;
 
 // Snowflake Rating System
 const snowflakes = document.querySelectorAll("#snowflakeRating span");
-snowflakes.forEach((snowflake, index) => {
-    snowflake.addEventListener("click", () => {
-        selectedRating = index + 1;
-        updateSnowflakeRating(selectedRating);
-    });
 
-    snowflake.addEventListener("mouseover", () => {
-        updateSnowflakeRating(index + 1);
+function addSnowflakeListeners() {
+    snowflakes.forEach((snowflake, index) => {
+        snowflake.addEventListener("mouseover", () => updateSnowflakeRating(index + 1));
+        snowflake.addEventListener("mouseleave", () => updateSnowflakeRating(selectedRating));
+        snowflake.addEventListener("click", () => {
+            selectedRating = index + 1;
+            updateSnowflakeRating(selectedRating);
+        });
     });
-
-    snowflake.addEventListener("mouseleave", () => {
-        updateSnowflakeRating(selectedRating);
-    });
-});
+}
 
 function updateSnowflakeRating(rating) {
     snowflakes.forEach((snowflake, index) => {
@@ -43,22 +39,17 @@ function updateSnowflakeRating(rating) {
     });
 }
 
-// Submit rating to Google Sheets
+addSnowflakeListeners();
+
 async function submitRating() {
     const movieID = document.getElementById("movieSelect").value;
+    const movieTitle = document.getElementById("movieSelect").selectedOptions[0].textContent.split(" (")[0];
     const comment = document.getElementById("review").value;
 
     if (selectedRating === 0) {
         alert("Please select a snowflake rating!");
         return;
     }
-
-    // Log data before submission
-    console.log({
-        movieID: movieID,
-        rating: selectedRating,
-        comment: comment
-    });
 
     try {
         const response = await fetch(googleScriptURL, {
@@ -68,6 +59,7 @@ async function submitRating() {
             },
             body: JSON.stringify({
                 movieID: movieID,
+                title: movieTitle,
                 rating: selectedRating,
                 comment: comment
             })
@@ -79,30 +71,26 @@ async function submitRating() {
             showThankYouBox();
             clearForm();
         } else {
-            const errorData = await response.text();
-            console.error("Response error:", errorData);
+            console.error("Failed response:", await response.text());
             alert("Failed to submit rating. Please try again.");
         }
     } catch (error) {
-        console.error("Error submitting rating:", error);
+        console.error("Submission error:", error);
         alert("Failed to submit rating. Please try again.");
     }
 }
 
-// Show Thank You Box
 function showThankYouBox() {
     document.getElementById("thankYouBox").style.display = "block";
 }
 
-// Hide Thank You Box
 function closeThankYouBox() {
     document.getElementById("thankYouBox").style.display = "none";
 }
 
-// Clear form fields
 function clearForm() {
-    document.getElementById("movieSelect").value = "";  // Reset movie selection
-    document.getElementById("review").value = "";        // Clear the comment field
-    selectedRating = 0;                                  // Reset rating
-    updateSnowflakeRating(selectedRating);               // Clear selected snowflakes
+    document.getElementById("movieSelect").value = "";
+    document.getElementById("review").value = "";
+    selectedRating = 0;
+    updateSnowflakeRating(selectedRating);
 }
