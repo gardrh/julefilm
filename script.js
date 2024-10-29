@@ -1,6 +1,6 @@
 // Load movies from Google Sheets and populate dropdown
 async function loadMovies() {
-    const response = await fetch('https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbzIXHWRPtrAlIWFDzvWyUvjpUfXrm8EkQKY5bW4bv_G2bDnUceQdClWB_Ghd_75tZzZqQ/exec');
+    const response = await fetch('https://script.google.com/macros/s/AKfycbzIXHWRPtrAlIWFDzvWyUvjpUfXrm8EkQKY5bW4bv_G2bDnUceQdClWB_Ghd_75tZzZqQ/exec');
     const movies = await response.json();
 
     const movieSelect = document.getElementById("movieSelect");
@@ -43,8 +43,11 @@ async function submitRating() {
         return;
     }
 
-    const response = await fetch('https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbzIXHWRPtrAlIWFDzvWyUvjpUfXrm8EkQKY5bW4bv_G2bDnUceQdClWB_Ghd_75tZzZqQ/exec', {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbzIXHWRPtrAlIWFDzvWyUvjpUfXrm8EkQKY5bW4bv_G2bDnUceQdClWB_Ghd_75tZzZqQ/exec', {
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
             movieID: movieID,
             rating: selectedRating,
