@@ -1,12 +1,18 @@
+const googleScriptURL = 'https://script.google.com/macros/s/AKfycbzPc47ZgTCruUTX75UXj_rL4BHW6Zuv3_YjJBL1vziDe5Q0OfVWBe9SUV0Xt6DY--4Xcw/exec';
+
 // Load movies from Google Sheets and populate dropdown
 async function loadMovies() {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbzIXHWRPtrAlIWFDzvWyUvjpUfXrm8EkQKY5bW4bv_G2bDnUceQdClWB_Ghd_75tZzZqQ/exec');
-    const movies = await response.json();
+    try {
+        const response = await fetch(googleScriptURL);
+        const movies = await response.json();
 
-    const movieSelect = document.getElementById("movieSelect");
-    movieSelect.innerHTML = movies
-        .map(movie => `<option value="${movie.id}">${movie.title} (${movie.year})</option>`)
-        .join("");
+        const movieSelect = document.getElementById("movieSelect");
+        movieSelect.innerHTML = movies
+            .map(movie => `<option value="${movie.id}">${movie.title} (${movie.year})</option>`)
+            .join("");
+    } catch (error) {
+        console.error("Error loading movies:", error);
+    }
 }
 
 loadMovies();
@@ -15,21 +21,24 @@ let selectedRating = 0;
 
 // Snowflake Rating System
 const snowflakes = document.querySelectorAll("#snowflakeRating span");
-snowflakes.forEach(snowflake => {
+snowflakes.forEach((snowflake, index) => {
     snowflake.addEventListener("click", () => {
-        selectedRating = parseInt(snowflake.getAttribute("data-value"));
+        selectedRating = index + 1;
+        updateSnowflakeRating(selectedRating);
+    });
+
+    snowflake.addEventListener("mouseover", () => {
+        updateSnowflakeRating(index + 1);
+    });
+
+    snowflake.addEventListener("mouseleave", () => {
         updateSnowflakeRating(selectedRating);
     });
 });
 
 function updateSnowflakeRating(rating) {
-    snowflakes.forEach(snowflake => {
-        const value = parseInt(snowflake.getAttribute("data-value"));
-        if (value <= rating) {
-            snowflake.classList.add("selected");
-        } else {
-            snowflake.classList.remove("selected");
-        }
+    snowflakes.forEach((snowflake, index) => {
+        snowflake.classList.toggle("selected", index < rating);
     });
 }
 
@@ -43,39 +52,45 @@ async function submitRating() {
         return;
     }
 
-    const response = await fetch('https://script.google.com/macros/s/AKfycbzIXHWRPtrAlIWFDzvWyUvjpUfXrm8EkQKY5bW4bv_G2bDnUceQdClWB_Ghd_75tZzZqQ/exec', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            movieID: movieID,
-            rating: selectedRating,
-            comment: comment
-        })
-    });
+    try {
+        const response = await fetch(googleScriptURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                movieID: movieID,
+                rating: selectedRating,
+                comment: comment
+            })
+        });
 
-    if (response.ok) {
-        showThankYouBox();
-        clearForm();
-    } else {
+        if (response.ok) {
+            showThankYouBox();
+            clearForm();
+        } else {
+            throw new Error("Failed to submit rating");
+        }
+    } catch (error) {
+        console.error("Error submitting rating:", error);
         alert("Failed to submit rating. Please try again.");
     }
 }
 
+// Show Thank You Box
 function showThankYouBox() {
-    const thankYouBox = document.getElementById("thankYouBox");
-    thankYouBox.style.display = "block";
+    document.getElementById("thankYouBox").style.display = "block";
 }
 
+// Hide Thank You Box
 function closeThankYouBox() {
-    const thankYouBox = document.getElementById("thankYouBox");
-    thankYouBox.style.display = "none";
+    document.getElementById("thankYouBox").style.display = "none";
 }
 
+// Clear form fields
 function clearForm() {
-    document.getElementById("movieSelect").value = "";
-    document.getElementById("review").value = "";
-    selectedRating = 0;
-    updateSnowflakeRating(selectedRating);
+    document.getElementById("movieSelect").value = "";  // Reset movie selection
+    document.getElementById("review").value = "";        // Clear the comment field
+    selectedRating = 0;                                  // Reset rating
+    updateSnowflakeRating(selectedRating);               // Clear selected snowflakes
 }
