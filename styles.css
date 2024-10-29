@@ -26,6 +26,9 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 /* Header Navigation */
@@ -59,7 +62,6 @@ h1 {
     color: #c0392b;
     font-size: 2em;
     font-family: 'Georgia', serif;
-    margin-bottom: 20px;
 }
 
 /* Labels and Form Elements */
@@ -67,15 +69,12 @@ label {
     font-weight: bold;
     font-size: 1.1em;
     color: #c0392b;
-    display: block;
-    margin-top: 20px;
     text-align: left;
 }
 
 select, textarea, button {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
     font-size: 1em;
     border-radius: 5px;
     border: 2px solid #d35400;
@@ -85,6 +84,12 @@ textarea {
     height: 80px;
     resize: none;
     border: 2px solid #d35400;
+}
+
+.rating {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
 }
 
 .rating input[type="radio"] {
@@ -189,6 +194,11 @@ h1::after {
 
     label, button, select, textarea {
         font-size: 1em;
+    }
+
+    .rating {
+        flex-direction: column;
+        align-items: start;
     }
 
     #thankYouBox {
