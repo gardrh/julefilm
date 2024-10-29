@@ -12,6 +12,7 @@ async function loadMovies() {
             .join("");
     } catch (error) {
         console.error("Error loading movies:", error);
+        alert("Failed to load movies.");
     }
 }
 
@@ -52,6 +53,13 @@ async function submitRating() {
         return;
     }
 
+    // Log data before submission
+    console.log({
+        movieID: movieID,
+        rating: selectedRating,
+        comment: comment
+    });
+
     try {
         const response = await fetch(googleScriptURL, {
             method: 'POST',
@@ -66,10 +74,14 @@ async function submitRating() {
         });
 
         if (response.ok) {
+            const data = await response.json();
+            console.log("Success:", data);
             showThankYouBox();
             clearForm();
         } else {
-            throw new Error("Failed to submit rating");
+            const errorData = await response.text();
+            console.error("Response error:", errorData);
+            alert("Failed to submit rating. Please try again.");
         }
     } catch (error) {
         console.error("Error submitting rating:", error);
