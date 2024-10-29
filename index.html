@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hallmark Christmas Movie Ratings</title>
+    <title>Rate Hallmark Christmas Movies</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <!-- Header Navigation -->
     <header>
+        <h1>Rate Hallmark Christmas Movies</h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="top.html">Top Movies</a>
@@ -17,31 +16,29 @@
         </nav>
     </header>
 
-    <h1>Rate Hallmark Christmas Movies</h1>
+    <main>
+        <label for="movieSelect">Select a Movie:</label>
+        <select id="movieSelect"></select>
 
-    <!-- Movie Selection and Rating Form -->
-    <label for="movieSelect">Select a Movie:</label>
-    <select id="movieSelect"></select>
+        <label for="rating">Rate this Movie:</label>
+        <div id="snowflakeRating" class="snowflake-rating">
+            <span data-value="1">❄️</span>
+            <span data-value="2">❄️</span>
+            <span data-value="3">❄️</span>
+            <span data-value="4">❄️</span>
+            <span data-value="5">❄️</span>
+        </div>
 
-    <div class="rating">
-        <label>Rate this Movie:</label><br>
-        <input type="radio" name="rating" value="1"> 1 Star
-        <input type="radio" name="rating" value="2"> 2 Stars
-        <input type="radio" name="rating" value="3"> 3 Stars
-        <input type="radio" name="rating" value="4"> 4 Stars
-        <input type="radio" name="rating" value="5"> 5 Stars
-    </div>
+        <textarea id="review" placeholder="Write a few words about the movie..."></textarea>
 
-    <textarea id="comment" placeholder="Write a few words about the movie..."></textarea>
-    <button onclick="submitRating()">Submit Rating</button>
+        <button onclick="submitRating()">🎄 Submit Rating</button>
 
-    <!-- Thank You Message Box -->
-    <div id="thankYouBox" class="thank-you">
-        <p>Thank you for your submission!</p>
-        <button onclick="closeThankYouBox()">Close</button>
-    </div>
+        <div id="thankYouBox">
+            <p>Thank you for your submission!</p>
+            <button onclick="closeThankYouBox()">OK</button>
+        </div>
+    </main>
 
     <script src="script.js"></script>
-
 </body>
 </html>
