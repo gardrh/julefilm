@@ -1,6 +1,6 @@
 // Load movies from Google Sheets and populate dropdown
 async function loadMovies() {
-    const response = await fetch('https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec');
+    const response = await fetch('https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbzIXHWRPtrAlIWFDzvWyUvjpUfXrm8EkQKY5bW4bv_G2bDnUceQdClWB_Ghd_75tZzZqQ/exec');
     const movies = await response.json();
 
     const movieSelect = document.getElementById("movieSelect");
