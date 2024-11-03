@@ -1,10 +1,10 @@
-const googleScriptURL = 'https://script.google.com/macros/s/AKfycbzIXHWRPtrAlIWFDzvWyUvjpUfXrm8EkQKY5bW4bv_G2bDnUceQdClWB_Ghd_75tZzZqQ/exec';
+const googleScriptURL = 'https://script.google.com/macros/s/AKfycbwvzMHDUFibfbISzNRWRNQRkqmhC2NVNOPua_idgNvzY6_cHdfGq0jOMGtLmj5cWmHgGg/exec';
 let selectedRating = 0;
 
 // Load movies when page loads
 async function loadMovies() {
     try {
-        const response = await fetch(googleScriptURL);
+        const response = await fetch(googleScriptURL + '?action=getMovies');
         if (!response.ok) throw new Error('Network response was not ok');
         
         const movies = await response.json();
@@ -125,3 +125,6 @@ function clearForm() {
     selectedRating = 0;
     updateSnowflakeDisplay(0, false);
 }
+
+// Initialize loading of movies when page is ready
+document.addEventListener('DOMContentLoaded', loadMovies);
