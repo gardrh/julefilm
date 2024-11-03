@@ -4,13 +4,7 @@ let selectedRating = 0;
 // Load movies when page loads
 async function loadMovies() {
     try {
-        const response = await fetch(googleScriptURL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ action: 'getMovieTitles' }) // Adding action for clarity
-        });
+        const response = await fetch(googleScriptURL);
         if (!response.ok) throw new Error('Network response was not ok');
         
         const movies = await response.json();
