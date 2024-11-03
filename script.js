@@ -19,13 +19,11 @@ loadMovies();
 
 let selectedRating = 0;
 
-// Snowflake Rating System
 const snowflakes = document.querySelectorAll("#snowflakeRating span");
-let currentSnowflakeIndex = -1; // To track which snowflake is focused
+let currentSnowflakeIndex = -1;
 
 function addSnowflakeListeners() {
     snowflakes.forEach((snowflake, index) => {
-        // Mouse event listeners
         snowflake.addEventListener("mouseover", () => updateSnowflakeRating(index + 1));
         snowflake.addEventListener("mouseleave", () => updateSnowflakeRating(selectedRating));
         snowflake.addEventListener("click", () => {
@@ -33,7 +31,6 @@ function addSnowflakeListeners() {
             updateSnowflakeRating(selectedRating);
         });
 
-        // Keyboard event listener
         snowflake.addEventListener("keydown", (event) => {
             if (event.key === 'Enter') {
                 selectedRating = index + 1;
@@ -42,20 +39,15 @@ function addSnowflakeListeners() {
         });
     });
 
-    // Handle keyboard navigation with arrow keys and shift
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowRight') {
-            if (currentSnowflakeIndex < snowflakes.length - 1) {
-                currentSnowflakeIndex++;
-                updateSnowflakeRating(currentSnowflakeIndex + 1);
-                snowflakes[currentSnowflakeIndex].focus(); // Set focus to the current snowflake
-            }
-        } else if (event.key === 'ArrowLeft') {
-            if (currentSnowflakeIndex > 0) {
-                currentSnowflakeIndex--;
-                updateSnowflakeRating(currentSnowflakeIndex + 1);
-                snowflakes[currentSnowflakeIndex].focus(); // Set focus to the current snowflake
-            }
+        if (event.key === 'ArrowRight' && currentSnowflakeIndex < snowflakes.length - 1) {
+            currentSnowflakeIndex++;
+            updateSnowflakeRating(currentSnowflakeIndex + 1);
+            snowflakes[currentSnowflakeIndex].focus();
+        } else if (event.key === 'ArrowLeft' && currentSnowflakeIndex > 0) {
+            currentSnowflakeIndex--;
+            updateSnowflakeRating(currentSnowflakeIndex + 1);
+            snowflakes[currentSnowflakeIndex].focus();
         }
     });
 }
@@ -63,11 +55,6 @@ function addSnowflakeListeners() {
 function updateSnowflakeRating(rating) {
     snowflakes.forEach((snowflake, index) => {
         snowflake.classList.toggle("selected", index < rating);
-        if (index < rating) {
-            snowflake.setAttribute('tabindex', '0'); // Make the selected snowflakes focusable
-        } else {
-            snowflake.removeAttribute('tabindex');
-        }
     });
 }
 
@@ -124,6 +111,6 @@ function clearForm() {
     document.getElementById("movieSelect").value = "";
     document.getElementById("review").value = "";
     selectedRating = 0;
-    currentSnowflakeIndex = -1; // Reset the index
+    currentSnowflakeIndex = -1;
     updateSnowflakeRating(selectedRating);
 }
