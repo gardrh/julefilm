@@ -87,6 +87,14 @@ button {
     justify-content: center;
 }
 
+button:hover {
+    background-color: #8b0000;
+}
+
+button:active {
+    background-color: #5a0000;
+}
+
 /* Thank You Box */
 #thankYouBox {
     display: none;
@@ -99,11 +107,16 @@ button {
     padding: 20px;
     border-radius: 5px;
     text-align: center;
+    z-index: 10;
 }
 
-/* Mobile Styles */
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 1.2em;
-    }
+#thankYouOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9;
 }
