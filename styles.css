@@ -60,18 +60,25 @@ select, textarea {
 
 .snowflake-rating span {
     font-size: 2em;
-    color: #ddd;
-    transition: color 0.3s;
+    color: #ddd; /* Default color */
+    transition: color 0.3s, transform 0.2s; /* Added transform for hover effect */
 }
 
 .snowflake-rating span.selected {
     color: #ffd700; /* Gold */
+    transform: scale(1.2); /* Slightly increase size for selected snowflakes */
+}
+
+.snowflake-rating span:hover {
+    color: #ffa500; /* Orange on hover */
 }
 
 textarea {
     height: 100px;
     resize: none;
 }
+
+/* Other styles remain unchanged */
 
 /* Button */
 button {
