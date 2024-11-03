@@ -1,8 +1,8 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #faf3e0;
-    color: #8b0000;
+    background-color: #faf3e0; /* Light beige background */
+    color: #8b0000; /* Dark red text */
     margin: 0;
     padding: 0;
     display: flex;
@@ -12,21 +12,27 @@ body {
 
 header {
     width: 100%;
-    background-color: #b22222;
+    background-color: #b22222; /* Firebrick red header */
     color: white;
     padding: 15px 0;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 header h1 {
     margin: 0;
-    font-size: 1.5em;
+    font-size: 1.8em; /* Slightly larger title */
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    margin: 0 10px;
+    margin: 0 15px; /* Increased spacing between links */
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline; /* Underline on hover for better visibility */
 }
 
 main {
@@ -36,33 +42,37 @@ main {
     padding: 20px;
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid #8b0000; /* Red border for Christmas feel */
 }
 
 label {
     display: block;
     font-weight: bold;
     margin-top: 15px;
+    color: #b22222; /* Header color for consistency */
 }
 
-select, textarea {
+select,
+textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px; /* Increased padding for comfort */
     margin-top: 5px;
-    border: 2px solid #b22222;
+    border: 2px solid #b22222; /* Border color matches the theme */
     border-radius: 5px;
     font-size: 16px;
+    box-sizing: border-box; /* Ensures padding is included in the width */
 }
 
 /* Snowflake Rating System */
 .snowflake-rating {
     display: flex;
     gap: 10px;
-    margin: 10px 0;
+    margin: 15px 0; /* Added margin for spacing */
 }
 
 .snowflake-rating span {
-    font-size: 2.5em;
+    font-size: 2.5em; /* Size of snowflakes */
     cursor: pointer;
     transition: transform 0.2s, color 0.3s;
 }
@@ -90,7 +100,7 @@ select, textarea {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     align-items: center;
     justify-content: center;
 }
@@ -102,8 +112,9 @@ select, textarea {
     text-align: center;
 }
 
+/* Button Styles */
 button {
-    background-color: #b22222;
+    background-color: #b22222; /* Button color */
     color: white;
     border: none;
     padding: 12px 24px;
@@ -115,6 +126,5 @@ button {
 }
 
 button:hover {
-    background-color: #8b0000;
+    background-color: #8b0000; /* Darker red on hover */
 }
-
