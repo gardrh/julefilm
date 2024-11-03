@@ -51,11 +51,11 @@ function updateSnowflakeDisplay(rating, isHover) {
     snowflakes.forEach((snowflake, index) => {
         const value = index + 1;
         if (value <= rating) {
-            snowflake.style.color = isHover ? '#ffa500' : '#ffd700'; // Orange for hover, Gold for selected
+            snowflake.style.color = '#ffd700'; // Gold for selected
             snowflake.style.transform = 'scale(1.2)';
             snowflake.classList.add('selected');
         } else {
-            snowflake.style.color = '#ddd';
+            snowflake.style.color = '#ddd'; // Gray for unselected
             snowflake.style.transform = 'scale(1)';
             snowflake.classList.remove('selected');
         }
