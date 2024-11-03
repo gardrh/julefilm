@@ -15,23 +15,23 @@
             <a href="about.html">About</a>
         </nav>
     </header>
-    <h1>Test HTML Link</h1>
-    <p>
-        Click the link below to open the test page:
-    </p>
-    <a href="test/test.html" target="_blank">Open Test HTML</a>
-
     <h1>Top Rated Hallmark Christmas Movies</h1>
-
-    <div id="topMoviesList" class="movie-list">
-        <!-- List of movies will be populated here -->
-    </div>
-
-    <script src="script.js"></script>
-    <script>
-        // Fetch and display top-rated movies on page load
-        displayTopRatedMovies();
-    </script>
+    <table id="topMoviesTable">
+        <thead>
+            <tr>
+                <th>Movie Title</th>
+                <th>Year</th>
+                <th>Average Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Top movies will be populated here -->
+        </tbody>
+    </table>
     
+    <script>
+        // Implement logic to fetch and display top movies here
+    </script>
+
 </body>
 </html>
