@@ -13,8 +13,8 @@ async function populateMovies() {
 
         movieTitles.forEach(title => {
             const option = document.createElement('option');
-            option.value = title;
-            option.textContent = title;
+            option.value = title.ID;  // Ensure this matches your Google Sheet structure
+            option.textContent = title.Title; // Assuming the title structure
             movieSelect.appendChild(option);
         });
     } catch (error) {
