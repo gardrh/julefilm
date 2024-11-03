@@ -4,7 +4,13 @@ let selectedRating = 0;
 // Load movies when page loads
 async function loadMovies() {
     try {
-        const response = await fetch(`${googleScriptURL}?action=getMovieTitles`);
+        const response = await fetch(googleScriptURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ action: 'getMovieTitles' }) // Adding action for clarity
+        });
         if (!response.ok) throw new Error('Network response was not ok');
         
         const movies = await response.json();
@@ -51,11 +57,11 @@ function updateSnowflakeDisplay(rating, isHover) {
     snowflakes.forEach((snowflake, index) => {
         const value = index + 1;
         if (value <= rating) {
-            snowflake.style.color = '#ffd700'; // Gold for selected
+            snowflake.style.color = isHover ? '#ffa500' : '#ffd700'; // Orange for hover, Gold for selected
             snowflake.style.transform = 'scale(1.2)';
             snowflake.classList.add('selected');
         } else {
-            snowflake.style.color = '#ddd'; // Gray for unselected
+            snowflake.style.color = '#ddd';
             snowflake.style.transform = 'scale(1)';
             snowflake.classList.remove('selected');
         }
@@ -75,10 +81,14 @@ async function submitRating() {
         alert('Please select a rating');
         return;
     }
+    if (!review.value.trim()) {
+        alert('Please write a review');
+        return;
+    }
 
     const formData = {
         MovieID: movieSelect.value,
-        Title: movieSelect.selectedOptions[0].text,
+        Title: movieSelect.selectedOptions[0].text.split(' (')[0],
         Rating: selectedRating,
         Comment: review.value.trim()
     };
