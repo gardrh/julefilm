@@ -23,14 +23,16 @@
         
         <label for="snowflakeRating">Rate this Movie:</label>
         <div id="snowflakeRating" class="snowflake-rating">
-            <span data-rating="1">❄️</span>
-            <span data-rating="2">❄️</span>
-            <span data-rating="3">❄️</span>
-            <span data-rating="4">❄️</span>
-            <span data-rating="5">❄️</span>
+            <span data-value="1">❄️</span>
+            <span data-value="2">❄️</span>
+            <span data-value="3">❄️</span>
+            <span data-value="4">❄️</span>
+            <span data-value="5">❄️</span>
         </div>
         
         <textarea id="review" placeholder="Write a few words about the movie..." required></textarea>
+        
+        <button id="fetchMoviesBtn" onclick="loadMovies()">📽️ Fetch Movies</button>
         <button id="submitButton" onclick="submitRating()">🎄 Submit Rating</button>
         
         <div id="thankYouBox" class="modal">
