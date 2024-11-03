@@ -32,15 +32,17 @@ nav a {
 main {
     max-width: 500px;
     width: 90%;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 label {
+    display: block;
     font-weight: bold;
+    margin-top: 15px;
 }
 
 select, textarea {
@@ -49,68 +51,69 @@ select, textarea {
     margin-top: 5px;
     border: 2px solid #b22222;
     border-radius: 5px;
+    font-size: 16px;
 }
 
 /* Snowflake Rating System */
 .snowflake-rating {
     display: flex;
     gap: 10px;
-    cursor: pointer;
+    margin: 10px 0;
 }
 
 .snowflake-rating span {
-    font-size: 2em;
-    color: #ddd; /* Default color */
-    transition: color 0.3s, transform 0.2s; /* Added transform for hover effect */
+    font-size: 2.5em;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.3s;
 }
 
-.snowflake-rating span.selected {
-    color: #ffd700; /* Gold */
-    transform: scale(1.2); /* Slightly increase size for selected snowflakes */
+.snowflake-rating span:not(.active) {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+.snowflake-rating span.active {
+    filter: none;
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 .snowflake-rating span:hover {
-    color: #ffa500; /* Orange on hover */
+    transform: scale(1.2);
 }
 
-textarea {
-    height: 100px;
-    resize: none;
-}
-
-/* Other styles remain unchanged */
-
-/* Button */
-button {
-    background-color: #b22222;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
     align-items: center;
     justify-content: center;
 }
 
-/* Thank You Box */
-#thankYouBox {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border: 2px solid #b22222;
+.modal-content {
+    background-color: white;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 8px;
     text-align: center;
 }
 
-/* Mobile Styles */
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 1.2em;
-    }
+button {
+    background-color: #b22222;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #8b0000;
 }
