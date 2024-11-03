@@ -11,7 +11,7 @@ async function loadMovies() {
         const movieSelect = document.getElementById("movieSelect");
         
         movieSelect.innerHTML = '<option value="">-- Select a movie --</option>' +
-            movies.map(movie => `<option value="${movie.id}">${movie.title}</option>`).join('');
+            movies.map(movie => `<option value="${movie.id}">${movie.title} (${movie.year})</option>`).join('');
     } catch (error) {
         console.error("Error loading movies:", error);
         alert("Failed to load movies. Please refresh the page.");
@@ -73,10 +73,6 @@ async function submitRating() {
     }
     if (selectedRating === 0) {
         alert('Please select a rating');
-        return;
-    }
-    if (!review.value.trim()) {
-        alert('Please write a review');
         return;
     }
 
