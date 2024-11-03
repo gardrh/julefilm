@@ -19,8 +19,8 @@ loadMovies();
 
 let selectedRating = 0;
 
+// Snowflake Rating System
 const snowflakes = document.querySelectorAll("#snowflakeRating span");
-let currentSnowflakeIndex = -1;
 
 function addSnowflakeListeners() {
     snowflakes.forEach((snowflake, index) => {
@@ -30,31 +30,13 @@ function addSnowflakeListeners() {
             selectedRating = index + 1;
             updateSnowflakeRating(selectedRating);
         });
-
-        snowflake.addEventListener("keydown", (event) => {
-            if (event.key === 'Enter') {
-                selectedRating = index + 1;
-                updateSnowflakeRating(selectedRating);
-            }
-        });
-    });
-
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowRight' && currentSnowflakeIndex < snowflakes.length - 1) {
-            currentSnowflakeIndex++;
-            updateSnowflakeRating(currentSnowflakeIndex + 1);
-            snowflakes[currentSnowflakeIndex].focus();
-        } else if (event.key === 'ArrowLeft' && currentSnowflakeIndex > 0) {
-            currentSnowflakeIndex--;
-            updateSnowflakeRating(currentSnowflakeIndex + 1);
-            snowflakes[currentSnowflakeIndex].focus();
-        }
     });
 }
 
 function updateSnowflakeRating(rating) {
     snowflakes.forEach((snowflake, index) => {
         snowflake.classList.toggle("selected", index < rating);
+        snowflake.style.color = index < rating ? '#ffd700' : '#ddd'; // Set color based on rating
     });
 }
 
@@ -111,6 +93,6 @@ function clearForm() {
     document.getElementById("movieSelect").value = "";
     document.getElementById("review").value = "";
     selectedRating = 0;
-    currentSnowflakeIndex = -1;
     updateSnowflakeRating(selectedRating);
 }
+
