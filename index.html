@@ -1,46 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rate Hallmark Christmas Movies</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Christmas Movie Rating</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Rate Hallmark Christmas Movies</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="top.html">Top Movies</a>
-            <a href="about.html">About</a>
-        </nav>
-    </header>
-    <main>
-        <label for="movieSelect">Select a Movie:</label>
-        <select id="movieSelect" required>
-            <option value="">-- Select a movie --</option>
-        </select>
-        
-        <label for="snowflakeRating">Rate this Movie:</label>
-        <div id="snowflakeRating" class="snowflake-rating">
-            <span data-value="1">❄️</span>
-            <span data-value="2">❄️</span>
-            <span data-value="3">❄️</span>
-            <span data-value="4">❄️</span>
-            <span data-value="5">❄️</span>
-        </div>
-        
-        <textarea id="review" placeholder="Write a few words about the movie..."></textarea>
-        
-        <button id="submitButton" onclick="submitRating()">🎄 Submit Rating</button>
-        
-        <div id="thankYouBox" class="modal">
-            <div class="modal-content">
-                <p>Thank you for your rating!</p>
-                <button onclick="closeThankYouBox()">Close</button>
-            </div>
-        </div>
-    </main>
-    <script src="script.js"></script>
+  <header class="header">
+    <h1>🎄 Christmas Movie Ratings 🎄</h1>
+    <nav>
+      <a href="#" onclick="loadHome()">Home</a>
+      <a href="#" onclick="loadTopMovies()">Top Movies</a>
+    </nav>
+  </header>
+
+  <div id="rating-section">
+    <h2>Rate a Christmas Movie</h2>
+    <select id="movie-select">
+      <!-- Movie options populated by JavaScript -->
+    </select>
+    <div class="snowflakes" id="snowflakes">
+      ★ ★ ★ ★ ★
+    </div>
+    <textarea id="comment" placeholder="Add your festive comment"></textarea>
+    <button onclick="submitRating()">Submit</button>
+    <p id="message"></p>
+  </div>
+  
+  <div id="top-movies" style="display:none;">
+    <h2>Top Christmas Movies</h2>
+    <ul id="top-movies-list"></ul>
+  </div>
+
+  <footer>
+    <p>❄️ Wishing you a Merry Christmas! ❄️</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
